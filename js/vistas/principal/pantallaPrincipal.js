@@ -3,7 +3,10 @@ import PokemonServicio from "../../aplicacion/servicio/pokemonServicio.js";
 class PantallaPrincipal{
     ids = {
         root : "root",
-        tabla : "tabla"
+        tabla : "tabla",
+        nombre : "nombre",
+        numero : "numero",
+        imagen : "imagen"
     };
     archivo = "./html/principal/principal.html";
     pokeService = new PokemonServicio();
@@ -21,6 +24,7 @@ class PantallaPrincipal{
     }
 
     cargarTabla(datos){
+        let esto = this;
         let tabla = document.getElementById(this.ids.tabla);
         datos.forEach(e => {
             let r = document.createElement("tr");
@@ -32,6 +36,9 @@ class PantallaPrincipal{
                     if (k == "imagen") {
                         let img = document.createElement("img");
                         img.src = e[k];
+                        img.onclick = function() {
+                            esto.mostrarPoke(e);
+                        }
                         col.append(img);
                     }else{
                         col.innerHTML = e[k];
@@ -40,6 +47,18 @@ class PantallaPrincipal{
                 r.append(col);
             });
         });
+    }
+
+    asignarFunciones(){}
+
+    mostrarPoke(pokemon){
+        let nombre = document.getElementById(this.ids.nombre);
+        let numero = document.getElementById(this.ids.numero);
+        let imagen = document.getElementById(this.ids.imagen);
+
+        nombre.innerHTML = pokemon.nombre;
+        numero.innerHTML = pokemon.numero;
+        imagen.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/" + pokemon.numero +".png";
     }
 }
 export default PantallaPrincipal;
