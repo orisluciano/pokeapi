@@ -6,10 +6,13 @@ class PantallaPrincipal{
         tabla : "tabla",
         nombre : "nombre",
         numero : "numero",
-        imagen : "imagen"
+        imagen : "imagen",
+        botonera : "botonera"
     };
     archivo = "./html/principal/principal.html";
     pokeService = new PokemonServicio();
+    desde = 0;
+    cantidad = 10;
 
     async fetchForm(){
         let form = await fetch(this.archivo);
@@ -19,7 +22,7 @@ class PantallaPrincipal{
     }
 
     async cargarDatos(){
-        let request = await this.pokeService.getPokemon(10,0);
+        let request = await this.pokeService.getPokemon(this.cantidad, this.desde);
         this.cargarTabla(request);
     }
 
@@ -59,6 +62,15 @@ class PantallaPrincipal{
         nombre.innerHTML = pokemon.nombre;
         numero.innerHTML = pokemon.numero;
         imagen.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/" + pokemon.numero +".png";
+    }
+
+    crearBotones(){
+        let botonera = document.getElementById(this.ids.botonera);
+        let mas = document.createElement("button");
+        mas.innerHTML = "Mas";
+        mas.onclick = function() {
+            
+        }
     }
 }
 export default PantallaPrincipal;
