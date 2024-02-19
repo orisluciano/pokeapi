@@ -1,6 +1,15 @@
 body {
-  background-color: papayawhip; 
+  background-color: #f15145; 
   margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+img{
+  max-width: min-content;
+  max-height: min-content;
 }
 
 .overflowScroll {
@@ -10,6 +19,8 @@ body {
 .column {
     float: left;
     width: 25%;
+    height: 550px;
+    max-height: 100%;
   }
   
   /* Clear floats after the columns */
@@ -21,7 +32,13 @@ body {
     max-height: 50%;
   }
 
+  .fijarDerecha{
+    float: right;
+    position: fixed;
+  }
+
   .pie {
     height: 5%;
+    width: 100%;
     background-color: blue;
   }

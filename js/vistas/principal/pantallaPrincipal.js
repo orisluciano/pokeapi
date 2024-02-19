@@ -24,6 +24,8 @@ class PantallaPrincipal{
     async cargarDatos(){
         let request = await this.pokeService.getPokemon(this.cantidad, this.desde);
         this.cargarTabla(request);
+        this.desde = this.desde + this.cantidad;
+        this.crearBotones();
     }
 
     cargarTabla(datos){
@@ -65,12 +67,15 @@ class PantallaPrincipal{
     }
 
     crearBotones(){
+        let esto = this;
         let botonera = document.getElementById(this.ids.botonera);
+        botonera.innerHTML = "";
         let mas = document.createElement("button");
         mas.innerHTML = "Mas";
         mas.onclick = function() {
-            
+            esto.cargarDatos(esto.cantidad, esto.desde);
         }
+        botonera.append(mas)
     }
 }
 export default PantallaPrincipal;
